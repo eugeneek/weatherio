@@ -1,4 +1,25 @@
 <resources>
     <string name="app_name">Weatherio</string>
+    <string name="weather_wind">Wind</string>
+    <string name="weather_humidity">Humidity</string>
+    <string name="weather_precipitation">Precipitation</string>
+    <string name="weather_cloudiness">Cloudiness</string>
+    <string name="weather_pressure">Pressure</string>
+    <string name="weather_thunderstorm">Thunderstorm</string>
+    <string name="weather_drizzle">Drizzle</string>
+    <string name="weather_rain">Rain</string>
+    <string name="weather_snow">Snow</string>
+    <string name="weather_mist">Mist</string>
+    <string name="weather_smoke">Smoke</string>
+    <string name="weather_haze">Haze</string>
+    <string name="weather_dust">Dust</string>
+    <string name="weather_fog">Fog</string>
+    <string name="weather_sand">Sand</string>
+    <string name="weather_ash">Ash</string>
+    <string name="weather_squall">Squall</string>
+    <string name="weather_tornado">Tornado</string>
+    <string name="weather_clear">Clear</string>
+    <string name="weather_clouds">Clouds</string>
+    <string name="weather_unknown">Unknown</string>
 
 </resources>

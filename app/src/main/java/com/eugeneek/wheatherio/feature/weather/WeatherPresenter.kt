@@ -4,27 +4,32 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.eugeneek.wheatherio.WeatherRepository
-import com.eugeneek.wheatherio.data.Weather
-import com.eugeneek.wheatherio.feature.base.SettingsProvider
+import com.eugeneek.wheatherio.feature.weather.domain.WeatherUseCase
 import kotlinx.coroutines.launch
 
 
 class WeatherPresenter(
-    private val weatherRepository: WeatherRepository,
-    private val settingsProvider: SettingsProvider
+    private val weatherUseCase: WeatherUseCase,
+    private val weatherUiMapper: WeatherUiMapper
 ): ViewModel() {
+
+    private val _weatherUiModel = MutableLiveData<WeatherUiModel>()
+    val weatherUiModel: LiveData<WeatherUiModel>
+        get() = _weatherUiModel
+
+    private val _loadingUiModel = MutableLiveData<Boolean>()
+    val loadingUiModel: LiveData<Boolean>
+        get() = _loadingUiModel
 
     init {
         viewModelScope.launch {
-            val cityName = settingsProvider.getCurrentCity()
-            val weather = weatherRepository.getWeatherByCity(cityName)
-            weatherLiveData.value = weather
+            _loadingUiModel.value = true
+            val weatherModel = weatherUseCase.getWeatherExtendedData()
+            val weatherUiModel = weatherUiMapper.fromDomainModel(weatherModel)
+
+            _loadingUiModel.value = false
+            _weatherUiModel.value = weatherUiModel
         }
     }
-
-    private val weatherLiveData = MutableLiveData<Weather>()
-
-    fun getWeatherLiveData(): LiveData<Weather> = weatherLiveData
 
 }
